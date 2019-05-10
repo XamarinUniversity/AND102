@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=US-ASCII">
+    <title>Exercise 4: Pass arguments to an activity</title>
+    <link rel="stylesheet" type="text/css" href="./res/styles/normalize.css">
+    <link rel="stylesheet" type="text/css" href="./res/styles/prettify.css" />
+    <link rel="stylesheet" type="text/css" href="./res/styles/styles.css">
+</head>
+
+<body>
+    <!-- Use the same title as the StartHere -->
+    <header>AND102 Activities and Intents</header>
+
+    <section id="main">
+        <h2>Exercise 4: Pass arguments to an activity</h2>
+<p>The goal of this exercise is to pass arguments to an Activity. You will see how to load arguments in the source Activity and how to retrieve them in the target Activity.</p>
+<p>The image below shows a screenshot of every Activity in the app - the arrow depicted in red shows the Activity transition that you will code in this exercise.</p>
+<p>Notice that you are navigating from a <em>list view</em> to a <em>details view</em> and you will need to send along some information so that the <strong>DetailsActivity</strong> knows which item to display. In this case, you will pass across the position in the list of the selected item.</p>
+<figure class="figure">
+<img src="./images/ex4-overview.png" alt="Diagram of the Activity launch where we will be passing arguments in this exercise" style="max-height: 500px;" />
+</figure>
+<blockquote class="info-quote">To complete the exercise, you will need <a href="https://www.visualstudio.com/" target="_blank">Visual Studio for Windows or macOS</a> with the <a href="https://visualstudio.microsoft.com/xamarin/" target="_blank">Xamarin development tools</a> installed. You will also need either an emulator/simulator or a device to run the exercise on. Please see the <a href="https://docs.microsoft.com/xamarin/cross-platform/get-started/installation/" target="_blank">setup page</a> if you need help installing the Xamarin development environment.
+</blockquote>
+
+<hr>
+<h2>Open the starter solution</h2>
+<p>This exercise is a continuation of the previous exercise. You can use your existing solution or begin from the prior <strong>Exercise 3 &gt; Completed</strong> solution in your copy of the cloned or downloaded <a href="https://github.com/XamarinUniversity/AND102/">course materials</a>.</p>
+
+<hr>
+<h2>Create an Intent</h2>
+<p>We will start with the necessary first step: creating an Intent to navigate from the <strong>ItemsActivity</strong> (the source) to the <strong>DetailsActivity</strong> (the target). We will load the arguments in the next step.</p>
+<ol>
+<li>Open <strong>ItemsActivity.cs</strong>.</li>
+<li>Locate the <code>OnItemClick</code> method.</li>
+<li>Inside <code>OnItemClick</code>, create an <code>Intent</code> that will navigate the app to the <strong>DetailsActivity</strong>.</li>
+</ol>
+<pre class="prettyprint-collapse"><code>var intent = new Intent(this, typeof(DetailsActivity));
+</code></pre>
+
+
+<hr>
+<h2>Load arguments</h2>
+<p>We are navigating the app from the <strong>ItemsActivity</strong> to the <strong>DetailsActivity</strong> when the user selects one of the items in the list. To display the details of that item, the <strong>DetailsActivity</strong> needs to know which item the user selected. We'll achieve this by passing the item's position in the list inside the Intent Extras.  </p>
+<ol>
+<li>Continue working in the <code>OnItemClick</code> method of the <strong>ItemsActivity</strong>.</li>
+<li>The event args contain the selected item's position in the list.</li>
+<li>Load the position of the clicked item into the Intent Extras. Use <strong>&quot;ItemPosition&quot;</strong> as the key.</li>
+</ol>
+<pre class="prettyprint-collapse"><code>void OnItemClick(object sender, AdapterView.ItemClickEventArgs e)
+{
+   int position = e.Position;
+   var intent = new Intent(this, typeof(DetailsActivity));
+   intent.PutExtra(&quot;ItemPosition&quot;, position);
+}
+</code></pre>
+
+<ol start="4">
+<li>Call <code>StartActivity</code> and pass it the Intent.</li>
+</ol>
+
+<hr>
+<h2>Retrieve arguments</h2>
+<p>Now we will move to the target Activity and retrieve the position of the selected item. The rest of the code is already written for you (it uses the position to look up the grocery item at that position and then populate the UI with that item's data).</p>
+<ol>
+<li>Open <strong>DetailsActivity.cs</strong>.</li>
+<li>Locate the <code>OnCreate</code> method.</li>
+<li>The <code>Intent</code> you created in the <strong>ItemsActivity</strong> to start the <strong>DetailsActivity</strong> is available here in an inherited property named <code>Intent</code>.</li>
+<li>Retrieve the <strong>ItemPosition</strong> from the <code>Extras</code> of this Intent and assign it to the local variable named <code>position</code>.</li>
+</ol>
+<pre class="prettyprint-collapse"><code>public class DetailsActivity : Activity
+{
+   protected override void OnCreate(Bundle bundle)
+   {
+      ...
+      int position = Intent.GetIntExtra(&quot;ItemPosition&quot;, -1);
+      ...
+   }
+}
+</code></pre>
+
+
+<hr>
+<h2>Test your work</h2>
+<ol>
+<li>Run the application.</li>
+<li>Navigate to the <strong>ItemsActivity</strong>.</li>
+<li>Touch an item in the list. Verify that the <strong>DetailsActivity</strong> launches and displays the item you selected.</li>
+</ol>
+<img src="images/ex4runapp1.png" alt="image" />
+<img src="images/ex4runapp2.png" alt="image" />
+<img src="images/ex4runapp3.png" alt="image" />
+
+<hr>
+<h2>Exercise summary</h2>
+<p>In this exercise, you passed arguments to an <code>Activity</code>. We covered how to load arguments in the source <code>Activity</code> and how to retrieve them in the target <code>Activity</code>.</p>
+<p>You can view the completed solution in the <strong>Exercise 4 &gt; Completed</strong> folder of your copy of the cloned or downloaded <a href="https://github.com/XamarinUniversity/AND102/">course materials</a>.</p>
+
+
+        <div class="align-right">
+            <a href="../StartHere.html">Go Back</a>
+        </div>
+
+    </section>
+
+    <script src="./res/js/jquery.min.js"></script>
+    <script src="./res/js/jquery.imagemapster.min.js"></script>
+    <script src="./res/js/imagemap.js"></script>
+    <script src="./res/js/prettify.js"></script>
+    <script src="./res/js/script.js"></script>
+
+    <footer>Copyright (C) 2018 Xamarin Inc., Microsoft. All rights reserved.<br><a target="_blank" href="http://university.xamarin.com">Visit Xamarin University for more classes and content</a></footer>
+
+</body>
+</html>

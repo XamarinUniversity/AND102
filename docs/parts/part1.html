@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=US-ASCII">
+    <title>Exercise 1: Explore the completed exercise</title>
+    <link rel="stylesheet" type="text/css" href="./res/styles/normalize.css">
+    <link rel="stylesheet" type="text/css" href="./res/styles/prettify.css" />
+    <link rel="stylesheet" type="text/css" href="./res/styles/styles.css">
+</head>
+
+<body>
+    <!-- Use the same title as the StartHere -->
+    <header>AND102 Activities and Intents</header>
+
+    <section id="main">
+        <h2>Exercise 1: Explore the completed exercise</h2>
+<p>This exercise asks you to run an app that demonstrates the course goals. The image below shows the various screens of the app. The lines indicate the transitions between Activities and the arrowheads show the direction of data flow. Your goal in this exercise is to work with the app so you understand its structure - subsequent exercises will ask you to begin with a starter version of this app and write the code to implement all the Activity transitions.</p>
+<figure class="figure">
+<img src="./images/ex1-overview.png" alt="Overview of demo app's navigation structure" style="max-height: 500px;" />
+</figure>
+<blockquote class="info-quote">To complete the exercise, you will need <a href="https://www.visualstudio.com/" target="_blank">Visual Studio for Windows or macOS</a> with the <a href="https://visualstudio.microsoft.com/xamarin/" target="_blank">Xamarin development tools</a> installed. You will also need either an emulator/simulator or a device to run the exercise on. Please see the <a href="https://docs.microsoft.com/xamarin/cross-platform/get-started/installation/" target="_blank">setup page</a> if you need help installing the Xamarin development environment.
+</blockquote>
+
+<hr>
+<h2>Open the completed solution</h2>
+<p>Open your copy of the cloned or downloaded <strong>Exercise 1 &gt; Completed</strong> solution from your copy of the cloned or downloaded <a href="https://github.com/XamarinUniversity/AND102/">course materials</a> in either <strong>Visual Studio for Windows</strong> or <strong>Visual Studio for Mac</strong>.</p>
+
+<hr>
+<h2>Run the application</h2>
+<ol>
+<li>Build and run the <strong>Grocery List</strong> application.</li>
+</ol>
+<figure class="figure">
+<img src="images/ex1runapp.png" alt="Grocery List application" />
+</figure>
+
+<hr>
+<h2>Navigate to and from an Activity</h2>
+<p>Below are the step-by-step instructions to navigate between Activities.</p>
+<ol>
+<li>Touch the <strong>ITEMS</strong> button to navigate to the Items Activity.</li>
+</ol>
+<figure class="figure">
+<img src="./images/ex1navigate1.png" alt="image" />
+</figure>
+<ol start="2">
+<li>Touch one of the items in the list to navigate to the Details Activity. The Items Activity will pass the item's position in the data model to the Details Activity so it knows which item to display.</li>
+</ol>
+<figure class="figure">
+<img src="./images/ex1navigate2.png" alt="image" />
+</figure>
+<ol start="3">
+<li>Touch the <strong>Android back-button</strong> to return to the Items Activity.</li>
+</ol>
+<figure class="figure">
+<img src="./images/ex1navigate3.png" alt="image" />
+</figure>
+<ol start="4">
+<li>Touch the <strong>Android back-button</strong> to return to the Main Activity.</li>
+</ol>
+<figure class="figure">
+<img src="./images/ex1navigate4.png" alt="image" />
+</figure>
+
+<hr>
+<h2>Add data to the application</h2>
+<p>Below are the step-by-step instructions to add data to the application.</p>
+<ol>
+<li>Touch the <strong>ADD ITEM</strong> button to navigate to the Add Item Activity. Enter values for a new item. </li>
+</ol>
+<figure class="figure">
+<img src="./images/ex1add-data1.png" alt="image" />
+</figure>
+<ol start="2">
+<li>Touch the <strong>SAVE</strong> button. The Add Item Activity will send the values for the new item back to the Main Activity.</li>
+</ol>
+<figure class="figure">
+<img src="./images/ex1add-data2.png" alt="image" />
+</figure>
+<ol start="3">
+<li>Touch the <strong>ITEMS</strong> button to move to the Items Activity. Verify that the new item was added to the list.</li>
+</ol>
+<figure class="figure">
+<img src="./images/ex1add-data3.png" alt="image" />
+</figure>
+<ol start="4">
+<li>Touch the Android <strong>back-button</strong> to return to the Main Activity.</li>
+</ol>
+<figure class="figure">
+<img src="./images/ex1add-data4.png" alt="image" />
+</figure>
+
+<hr>
+<h2>Launch an external Activity</h2>
+<p>Below are the step-by-step instructions to launch an external Activity.</p>
+<ol>
+<li>Touch the <strong>ABOUT</strong> button to navigate to the About Activity.</li>
+</ol>
+<figure class="figure">
+<img src="./images/ex1launch-activity1.png" alt="image" />
+</figure>
+<ol start="2">
+<li>Touch the <strong>LEARN MORE</strong> button to launch the web browser. The web browser is a standard Android Activity that your app is using.</li>
+</ol>
+<img src="./images/ex1launch-activity2.png" alt="image" />
+<img src="./images/ex1launch-activity3.png" alt="image" />
+
+<hr>
+<h2>Exercise summary</h2>
+<p>In this exercise, you ran an app that let you navigate between Activities, add data, and launch an external activity. Now that you know what the completed application will look like, let's get started building it.</p>
+
+
+        <div class="align-right">
+            <a href="../StartHere.html">Go Back</a>
+        </div>
+
+    </section>
+
+    <script src="./res/js/jquery.min.js"></script>
+    <script src="./res/js/jquery.imagemapster.min.js"></script>
+    <script src="./res/js/imagemap.js"></script>
+    <script src="./res/js/prettify.js"></script>
+    <script src="./res/js/script.js"></script>
+
+    <footer>Copyright (C) 2018 Xamarin Inc., Microsoft. All rights reserved.<br><a target="_blank" href="http://university.xamarin.com">Visit Xamarin University for more classes and content</a></footer>
+
+</body>
+</html>

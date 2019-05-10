@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=US-ASCII">
+    <title>Exercise 2: Start an Activity in your .apk</title>
+    <link rel="stylesheet" type="text/css" href="./res/styles/normalize.css">
+    <link rel="stylesheet" type="text/css" href="./res/styles/prettify.css" />
+    <link rel="stylesheet" type="text/css" href="./res/styles/styles.css">
+</head>
+
+<body>
+    <!-- Use the same title as the StartHere -->
+    <header>AND102 Activities and Intents</header>
+
+    <section id="main">
+        <h2>Exercise 2: Start an Activity in your .apk</h2>
+<p>The goal of this exercise is to use Explicit Intents to start Activities from your application package.</p>
+<p>You will write code to start the Items Activity, the Add Item Activity, and the About Activity. The image below shows a screenshot of every Activity in the app - the arrows depicted in red show the Activity transitions that you will code in this exercise.</p>
+<figure class="figure">
+<img src="./images/ex2-overview.png" alt="Diagram of Activity launching to be added in this exercise" style="max-height: 500px;" />
+</figure>
+<blockquote class="info-quote">To complete the exercise, you will need <a href="https://www.visualstudio.com/" target="_blank">Visual Studio for Windows or macOS</a> with the <a href="https://visualstudio.microsoft.com/xamarin/" target="_blank">Xamarin development tools</a> installed. You will also need either an emulator/simulator or a device to run the exercise on. Please see the <a href="https://docs.microsoft.com/xamarin/cross-platform/get-started/installation/" target="_blank">setup page</a> if you need help installing the Xamarin development environment.
+</blockquote>
+
+<hr>
+<h2>Open the starter solution</h2>
+<p>This is the same <strong>Grocery List</strong> app you ran in the previous exercise; however, this starter solution has several of the key pieces of code removed and left for you to implement. In most cases, you will find existing event-handlers that are already subscribed to button click events. The handler methods are just stubs though and it is your task to add code to complete them.</p>
+<p>Open the <strong>Exercise 2 &gt; Start</strong> solution from your copy of the cloned or downloaded <a href="https://github.com/XamarinUniversity/AND102/">course materials</a> in either <strong>Visual Studio for Windows</strong> or <strong>Visual Studio for Mac</strong>.</p>
+
+<hr>
+<h2>Start an Activity with an Intent</h2>
+<p>There are multiple ways to start an Activity. Some give you the ability to pass arguments, some let you harvest results, and some are convenience methods for simple cases.</p>
+<p>In this first part, we have two simple cases since we do not need to pass data back and forth. However, we are going to practice with the more powerful syntax in preparation for later examples where we will need to transfer information.</p>
+<ol>
+<li>
+Open <strong>MainActivity.cs</strong>.
+</li>
+<li>
+Add code to the <code>OnItemsClick</code> method to navigate the application to the <strong>ItemsActivity</strong>. Do this by creating an <code>Intent</code> object and passing a <code>Context</code> (i.e. your <code>Activity</code>) and a <code>Type</code> object to the constructor. Call <code>StartActivity</code> and pass the <code>Intent</code>.
+</li>
+</ol>
+<pre class="prettyprint-collapse"><code>var intent = new Intent(this, typeof(ItemsActivity));
+StartActivity(intent);
+</code></pre>
+
+<ol start="3">
+<li>Repeat the previous step for the <strong>AddItem</strong> Activity (i.e. add code to the <code>OnAddItemClick</code> method to navigate the application to the <code>AddItemActivity</code>).</li>
+</ol>
+
+<hr>
+<h2>Start an Activity by type</h2>
+<p>Here, we are going to use one of the convenience methods that lets us start an Activity in one line of code.</p>
+<ol>
+<li>
+Continue working in <strong>MainActivity.cs</strong>.
+</li>
+<li>
+Add code to the <code>OnAboutClick</code> method to navigate the app to the <strong>AboutActivity</strong>. Use the version of <code>StartActivity</code> that takes a <code>Type</code> object.
+</li>
+</ol>
+<pre class="prettyprint-collapse"><code>StartActivity(typeof(AboutActivity));
+</code></pre>
+
+
+<hr>
+<h2>Test your work</h2>
+<ol>
+<li>Run the application.</li>
+<li>Navigate to each of the Activities you started. Use the Android Back-button to return to the <strong>MainActivity</strong> each time.</li>
+</ol>
+<div class="row">
+<div class="col-md-4">
+<img src="./images/ex2runapp1.png" alt="image" style="max-width: 100%;" />
+</div>
+<div class="col-md-4">
+<img src="./images/ex2runapp2.png" alt="image" style="max-width: 100%;" />
+</div>
+</div>
+<div class="row">
+<div class="col-md-4">
+<img src="./images/ex2runapp3.png" alt="image" style="max-width: 100%;" />
+</div>
+<div class="col-md-4">
+<img src="./images/ex2runapp4.png" alt="image" style="max-width: 100%;" />
+</div>
+</div>
+<div class="row">
+<div class="col-md-4">
+<img src="./images/ex2runapp5.png" alt="image" style="max-width: 100%;" />
+</div>
+<div class="col-md-4">
+<img src="./images/ex2runapp6.png" alt="image" style="max-width: 100%;" />
+</div>
+</div>
+
+<hr>
+<h2>Exercise summary</h2>
+<p>In this exercise, you started an Activity with an Intent and by Type. Options like this are common in API design: the API gives you convenience methods for simple cases and verbose options when you need more power and control.</p>
+<p>You can view the completed solution in the <strong>Exercise 2 &gt; Completed</strong> folder of your copy of the cloned or downloaded <a href="https://github.com/XamarinUniversity/AND102/">course materials</a>.</p>
+
+
+        <div class="align-right">
+            <a href="../StartHere.html">Go Back</a>
+        </div>
+
+    </section>
+
+    <script src="./res/js/jquery.min.js"></script>
+    <script src="./res/js/jquery.imagemapster.min.js"></script>
+    <script src="./res/js/imagemap.js"></script>
+    <script src="./res/js/prettify.js"></script>
+    <script src="./res/js/script.js"></script>
+
+    <footer>Copyright (C) 2018 Xamarin Inc., Microsoft. All rights reserved.<br><a target="_blank" href="http://university.xamarin.com">Visit Xamarin University for more classes and content</a></footer>
+
+</body>
+</html>

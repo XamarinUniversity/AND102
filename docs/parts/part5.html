@@ -1,0 +1,170 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=US-ASCII">
+    <title>Exercise 5: Get activity results</title>
+    <link rel="stylesheet" type="text/css" href="./res/styles/normalize.css">
+    <link rel="stylesheet" type="text/css" href="./res/styles/prettify.css" />
+    <link rel="stylesheet" type="text/css" href="./res/styles/styles.css">
+</head>
+
+<body>
+    <!-- Use the same title as the StartHere -->
+    <header>AND102 Activities and Intents</header>
+
+    <section id="main">
+        <h2>Exercise 5: Get activity results</h2>
+<p>The goal of this exercise is to return results from an Activity. You will see how to load the results in the target Activity and how to retrieve them in the source Activity.</p>
+<p>The image below shows a screenshot of every Activity in the app - the arrow depicted in red shows the Activity transition that you will code in this exercise.</p>
+<p>You will be navigating the app from the <strong>AddItemActivity</strong> back to the <strong>MainActivity</strong>. The user will have entered data for a new grocery item and you will send that information back to the <strong>MainActivity</strong>.</p>
+<figure class="figure">
+<img src="./images/ex5-overview.png" alt="Diagram of an Activity returning a result" style="max-height: 500px;" />
+</figure>
+<blockquote class="info-quote">To complete the exercise, you will need <a href="https://www.visualstudio.com/" target="_blank">Visual Studio for Windows or macOS</a> with the <a href="https://visualstudio.microsoft.com/xamarin/" target="_blank">Xamarin development tools</a> installed. You will also need either an emulator/simulator or a device to run the exercise on. Please see the <a href="https://docs.microsoft.com/xamarin/cross-platform/get-started/installation/" target="_blank">setup page</a> if you need help installing the Xamarin development environment.
+</blockquote>
+
+<hr>
+<h2>Open the starter solution</h2>
+<p>This exercise is a continuation of the previous exercise. You can use your existing solution or begin from the prior <strong>Exercise 4 &gt; Completed</strong> solution in your copy of the cloned or downloaded <a href="https://github.com/XamarinUniversity/AND102/">course materials</a>.</p>
+
+<hr>
+<h2>Create an Intent</h2>
+<p>This first step asks you to prepare the data you will return. You will be working in the <strong>AddItemActivity</strong> and preparing an Intent to send back to the <strong>MainActivity</strong>. You will use the Intent Extras to hold the two data values you need to return.</p>
+<ol>
+<li>
+Open <strong>AddItemActivity.cs</strong>.
+</li>
+<li>
+Locate the <code>OnSaveClick</code> method - all your code for this step will go inside this method.
+</li>
+<li>
+Create an <code>Intent</code> object.
+</li>
+</ol>
+<pre class="prettyprint-collapse"><code>var intent = new Intent();
+</code></pre>
+
+<ol start="3">
+<li>Load the values for the grocery item's name and count into the Intent Extras. Use <em>ItemName</em> and <em>ItemCount</em> for keys when you load the Extras.</li>
+</ol>
+<pre class="prettyprint-collapse"><code>void OnSaveClick(object sender, EventArgs e)
+{
+   string name = FindViewById&lt;EditText&gt;(Resource.Id.nameInput).Text;
+   int count = int.Parse(FindViewById&lt;EditText&gt;(Resource.Id.countInput).Text);
+
+   var intent = new Intent();
+
+   intent.PutExtra(&quot;ItemName&quot;,  name );
+   intent.PutExtra(&quot;ItemCount&quot;, count);
+  ...
+}
+</code></pre>
+
+
+<hr>
+<h2>Load Activity results</h2>
+<p>You currently have your two return values packaged inside an Intent Extras. There are two more steps to send it on its way: identify the Intent as your return data and then end the current Activity.</p>
+<ol>
+<li>
+Continue working in the <code>OnSaveClick</code> method of the <strong>AddItemActivity</strong>.
+</li>
+<li>
+Call the version of <code>SetResult</code> that takes two parameters. Pass <code>Result.Ok</code> and the <code>Intent</code>.
+</li>
+</ol>
+<pre class="prettyprint-collapse"><code>void OnSaveClick(object sender, EventArgs e)
+{
+   ...
+   SetResult(Result.Ok, intent);
+   ...
+}
+</code></pre>
+
+<ol start="3">
+<li>Calling <code>SetResult</code> loads the data you want to return, but it does not end the current Activity. Call the <code>Finish</code> method to end the <strong>AddItemActivity</strong> and return the user to the <strong>MainActivity</strong>.</li>
+</ol>
+
+<hr>
+<h2>Start Activity with results</h2>
+<p>We have finished our work in the target Activity (<strong>AddItemActivity</strong>) and will now turn our attention to the source Activity (<strong>MainActivity</strong>).</p>
+<p>In this step, you will modify the code that launches the <strong>AddItemActivity</strong> - this is necessary so you will be notified when the <strong>AddItemActivity</strong> completes and given a chance to grab the result data.</p>
+<ol>
+<li>Open <strong>MainActivity.cs</strong>.</li>
+<li>Modify the <code>OnAddItemClick</code> method to use <code>StartActivityForResult</code> instead of <code>StartActivity</code>. Pass the <code>Intent</code> as before but add a second parameter with the integer value <code>100</code> to serve as the request code.</li>
+</ol>
+<pre class="prettyprint-collapse"><code>void OnAddItemClick(object sender, EventArgs e)
+{
+   var intent = new Intent(this, typeof(AddItemActivity));
+   StartActivityForResult(intent, 100);
+}
+</code></pre>
+
+
+<hr>
+<h2>Retrieve Activity results</h2>
+<p>The <strong>MainActivity</strong> used <code>StartActivityForResult</code> to launch the <strong>AddItemActivity</strong>. This means that when <strong>AddItemActivity</strong> finishes, the <code>OnActivityResult</code> method in <strong>MainActivity</strong> will run. This is where you retrieve the results.</p>
+<ol>
+<li>Continue working in <strong>MainActivity.cs</strong></li>
+<li>Locate the <code>OnActivityResult</code> method - all your work for this step will be done inside this method.</li>
+<li>Add an <code>if</code> statement that verifies that the <code>requestCode</code> parameter is <code>100</code> and the <code>resultCode</code> parameter is <code>Result.Ok</code>.</li>
+</ol>
+<pre class="prettyprint-collapse"><code>if (requestCode == 100 &amp;&amp; resultCode == Result.Ok)
+{
+   ...
+}
+</code></pre>
+
+<ol start="4">
+<li>Inside the <code>if</code>, retrieve the item name and count from the Intent Extras.</li>
+</ol>
+<pre class="prettyprint-collapse"><code>string name = data.GetStringExtra(&quot;ItemName&quot;);
+int count = data.GetIntExtra(&quot;ItemCount&quot;, -1);
+</code></pre>
+
+<ol start="5">
+<li>Create a new <code>Item</code> object using the name and count values. Add it to the collection of Items.</li>
+</ol>
+<pre class="prettyprint-collapse"><code>Items.Add(new Item(name, count));
+</code></pre>
+
+
+<hr>
+<h2>Test your work</h2>
+<ol>
+<li>
+Run the application.
+</li>
+<li>
+Navigate to the <strong>AddItemActivity</strong>. Enter values for <strong>Name</strong> and <strong>Count</strong>, then tap the <strong>Save</strong> button. This should return you to the <strong>MainActivity</strong>.
+</li>
+</ol>
+<img src="images/ex5runapp1.png" alt="image" />
+<img src="images/ex5runapp2.png" alt="image" />
+<ol start="3">
+<li>Navigate to the <strong>ItemsActivity</strong> and verify your new item is now in the list.</li>
+</ol>
+<img src="images/ex5runapp3.png" alt="image" />
+<img src="images/ex5runapp4.png" alt="image" />
+
+<hr>
+<h2>Exercise summary</h2>
+<p>In this exercise, you wrote code to retrieve results from an Activity. We covered how to load the results in the target Activity and how to retrieve them in the source Activity.</p>
+<p>You can view the completed solution in the <strong>Exercise 5 &gt; Completed</strong> folder of your copy of the cloned or downloaded <a href="https://github.com/XamarinUniversity/AND102/">course materials</a>.</p>
+
+
+        <div class="align-right">
+            <a href="../StartHere.html">Go Back</a>
+        </div>
+
+    </section>
+
+    <script src="./res/js/jquery.min.js"></script>
+    <script src="./res/js/jquery.imagemapster.min.js"></script>
+    <script src="./res/js/imagemap.js"></script>
+    <script src="./res/js/prettify.js"></script>
+    <script src="./res/js/script.js"></script>
+
+    <footer>Copyright (C) 2018 Xamarin Inc., Microsoft. All rights reserved.<br><a target="_blank" href="http://university.xamarin.com">Visit Xamarin University for more classes and content</a></footer>
+
+</body>
+</html>

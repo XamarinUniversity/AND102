@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=US-ASCII">
+    <title>Exercise 6: Launch a system activity</title>
+    <link rel="stylesheet" type="text/css" href="./res/styles/normalize.css">
+    <link rel="stylesheet" type="text/css" href="./res/styles/prettify.css" />
+    <link rel="stylesheet" type="text/css" href="./res/styles/styles.css">
+</head>
+
+<body>
+    <!-- Use the same title as the StartHere -->
+    <header>AND102 Activities and Intents</header>
+
+    <section id="main">
+        <h2>Exercise 6: Launch a system activity</h2>
+<p>The goal of this lab is to demonstrate how to launch an Android system Activity (i.e. an Activity installed with Android and not part of your application). </p>
+<p>The image below shows a screenshot of every Activity in the app - the arrow depicted in red shows the Activity transition that you will code in this exercise.</p>
+<p>You will start the web browser Activity and pass it the address of the web page you would like it to display.</p>
+<figure class="figure">
+<img src="./images/ex6-overview.png" alt="Diagram of launching a system Activity" style="max-height: 500px;" />
+</figure>
+<blockquote class="info-quote">To complete the exercise, you will need <a href="https://www.visualstudio.com/" target="_blank">Visual Studio for Windows or macOS</a> with the <a href="https://visualstudio.microsoft.com/xamarin/" target="_blank">Xamarin development tools</a> installed. You will also need either an emulator/simulator or a device to run the exercise on. Please see the <a href="https://docs.microsoft.com/xamarin/cross-platform/get-started/installation/" target="_blank">setup page</a> if you need help installing the Xamarin development environment.
+</blockquote>
+
+<hr>
+<h2>Open the starter solution</h2>
+<p>This exercise is a continuation of the previous exercise. You can use your existing solution or begin from the prior <strong>Exercise 5 &gt; Completed</strong> solution in your copy of the cloned or downloaded <a href="https://github.com/XamarinUniversity/AND102/">course materials</a>.</p>
+
+<hr>
+<h2>Launch an external Activity</h2>
+<p>The goal here is to launch the web-browser Activity. To do this, you'll need an Implicit Intent loaded with an Action and Data.</p>
+<ol>
+<li>
+Open <strong>AboutActivity.cs</strong>.
+</li>
+<li>
+Locate the <code>OnLearnMoreClick</code> method - all your work will be done in this method.
+</li>
+<li>
+Create an Intent with an <code>Action</code> of <code>ActionView</code>. You can pass the symbolic constant <code>Intent.ActionView</code> to the Intent constructor or create the Intent first and then use the <code>SetAction</code> method.
+</li>
+</ol>
+<pre class="prettyprint-collapse"><code>var intent = new Intent();
+intent.SetAction(Intent.ActionView);
+</code></pre>
+
+<ol start="4">
+<li>Set the Data of the Intent to a web address such as <code>http://www.xamarin.com</code>. The Data is an Android URI so you will need to use the <code>Android.Net.Uri.Parse</code> method to convert a string to a URI. Once you have a URI, use the <code>SetData</code> method to load it into the Intent.</li>
+</ol>
+<pre class="prettyprint-collapse"><code>intent.SetData(Android.Net.Uri.Parse(&quot;http://www.xamarin.com&quot;));
+</code></pre>
+
+<ol start="5">
+<li>Call <code>StartActivity</code> and pass it the Intent.</li>
+</ol>
+
+<hr>
+<h2>Test your work</h2>
+<ol>
+<li>Run the application.</li>
+<li>Navigate to the <strong>AboutActivity</strong>.</li>
+<li>Tap the &quot;Learn More&quot; button. Verify the web browser launches and displays the page you specified in the Data.</li>
+</ol>
+<img src="images/ex6runapp1.png" alt="image" />
+<img src="images/ex6runapp2.png" alt="image" />
+<img src="images/ex6runapp3.png" alt="image" />
+
+<hr>
+<h2>Exercise summary</h2>
+<p>In this exercise, you wrote code to launch an Android system Activity. Specifically, you enabled users to go from your application to the web browser.</p>
+<p>You can view the completed solution in the <strong>Exercise 6 &gt; Completed</strong> folder of your copy of the cloned or downloaded <a href="https://github.com/XamarinUniversity/AND102/">course materials</a>.</p>
+
+
+        <div class="align-right">
+            <a href="../StartHere.html">Go Back</a>
+        </div>
+
+    </section>
+
+    <script src="./res/js/jquery.min.js"></script>
+    <script src="./res/js/jquery.imagemapster.min.js"></script>
+    <script src="./res/js/imagemap.js"></script>
+    <script src="./res/js/prettify.js"></script>
+    <script src="./res/js/script.js"></script>
+
+    <footer>Copyright (C) 2018 Xamarin Inc., Microsoft. All rights reserved.<br><a target="_blank" href="http://university.xamarin.com">Visit Xamarin University for more classes and content</a></footer>
+
+</body>
+</html>

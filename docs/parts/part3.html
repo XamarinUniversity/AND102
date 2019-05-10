@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=US-ASCII">
+    <title>Exercise 3: Programmatically end an Activity</title>
+    <link rel="stylesheet" type="text/css" href="./res/styles/normalize.css">
+    <link rel="stylesheet" type="text/css" href="./res/styles/prettify.css" />
+    <link rel="stylesheet" type="text/css" href="./res/styles/styles.css">
+</head>
+
+<body>
+    <!-- Use the same title as the StartHere -->
+    <header>AND102 Activities and Intents</header>
+
+    <section id="main">
+        <h2>Exercise 3: Programmatically end an Activity</h2>
+<p>The goal of this exercise is to demonstrate how to end an Activity programmatically. This is useful whenever you need to implement something like a <em>Save</em> or <em>Cancel</em> button in your user interface.</p>
+<p>You will write code to end the <strong>AddItemActivity</strong> when the user clicks the <em>Cancel</em> button. The image below shows a screenshot of every Activity in the app - the arrow depicted in red shows the Activity transition that you will code in this exercise.</p>
+<figure class="figure">
+<img src="./images/ex3-overview.png" alt="Diagram of the back behavior to be added in this exercise" style="max-height: 500px;" />
+</figure>
+<blockquote class="info-quote">To complete the exercise, you will need <a href="https://www.visualstudio.com/" target="_blank">Visual Studio for Windows or macOS</a> with the <a href="https://visualstudio.microsoft.com/xamarin/" target="_blank">Xamarin development tools</a> installed. You will also need either an emulator/simulator or a device to run the exercise on. Please see the <a href="https://docs.microsoft.com/xamarin/cross-platform/get-started/installation/" target="_blank">setup page</a> if you need help installing the Xamarin development environment.
+</blockquote>
+
+<hr>
+<h2>Open the starter solution</h2>
+<p>This exercise is a continuation of the previous exercise. You can use your existing solution or begin from the prior <strong>Exercise 2 &gt; Completed</strong> solution in your copy of the cloned or downloaded <a href="https://github.com/XamarinUniversity/AND102/">course materials</a>.</p>
+
+<hr>
+<h2>Finish an Activity</h2>
+<p>Your goal is to programmatically end the <strong>AddItemActivity</strong> when the user clicks on the <em>Cancel</em> button. The button and a stub click handler are already written for you - your job is to complete the implementation of the handler.</p>
+<ol>
+<li>Open <strong>AddItemActivity.cs</strong>.</li>
+<li>Locate the <code>OnCancelClick</code> method.</li>
+<li>Inside <code>OnCancelClick</code>, add a call to the Activity's <code>Finish</code> method.</li>
+</ol>
+<pre class="prettyprint-collapse"><code>void OnCancelClick(object sender, EventArgs e)
+{
+   Finish();
+}
+</code></pre>
+
+<ol start="4">
+<li>Run the application to test your work.</li>
+<li>Navigate to the <strong>AddItemActivity</strong>.</li>
+</ol>
+<figure class="figure">
+<img src="images/ex3finish-activity1.png" alt="image" />
+</figure>
+<ol start="6">
+<li>Click the <strong>Cancel</strong> button and verify you return to the <strong>MainActivity</strong>.</li>
+</ol>
+<img src="images/ex3finish-activity2.png" alt="image" />
+<img src="images/ex3finish-activity3.png" alt="image" />
+
+<hr>
+<h2>Exercise summary</h2>
+<p>In this exercise, you programmatically ended an Activity.</p>
+<p>This is a nice technique to know; however, you should rarely need it since the standard back-button should work most of the time. The motivating case we looked at is a classic example: a <em>Cancel</em> button that returns to the previous Activity without saving the user's data.</p>
+<p>You can view the completed solution in the <strong>Exercise 3 &gt; Completed</strong> folder of your copy of the cloned or downloaded <a href="https://github.com/XamarinUniversity/AND102/">course materials</a>.</p>
+
+
+        <div class="align-right">
+            <a href="../StartHere.html">Go Back</a>
+        </div>
+
+    </section>
+
+    <script src="./res/js/jquery.min.js"></script>
+    <script src="./res/js/jquery.imagemapster.min.js"></script>
+    <script src="./res/js/imagemap.js"></script>
+    <script src="./res/js/prettify.js"></script>
+    <script src="./res/js/script.js"></script>
+
+    <footer>Copyright (C) 2018 Xamarin Inc., Microsoft. All rights reserved.<br><a target="_blank" href="http://university.xamarin.com">Visit Xamarin University for more classes and content</a></footer>
+
+</body>
+</html>
